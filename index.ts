@@ -1,8 +1,7 @@
 import { ConversationChain } from "langchain/chains";
 import { ChatOpenAI } from "langchain/chat_models/openai";
 import { BufferMemory } from "langchain/memory";
-
-console.log("Hello via Bun!");
+import { sherlock } from "./resources/Sherlock";
 
 async function bookPrompt() {
     const chat = new ChatOpenAI({
@@ -14,5 +13,9 @@ async function bookPrompt() {
 
     const chain = new ConversationChain({ llm: chat, memory })
 
+    const adventuresplit: RegExp = /(THE ADVENTURE OF[\s\S]*?)(?=(THE ADVENTURE OF|$))/g;
+    const chapters: string[] = [...sherlock.matchAll(adventuresplit)].map(match => match[1]);
+
+    console.log(chapters[0])
 }
 bookPrompt();
