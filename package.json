@@ -12,6 +12,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "langchain": "^0.0.154"
+    "langchain": "^0.0.154",
+    "openai": "^4.10.0"
   }
 }
